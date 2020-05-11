@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Passport Authentication</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
+  <link href="stylesheets/style.css" rel="stylesheet">
+
+    <!-- head -->
+    <meta charset="utf-8"> 
+    <!-- demo stylesheet -->
+    <link type="text/css" rel="stylesheet" href="./helpers/demo.css?v=2018.2.232" />    
+    <link type="text/css" rel="stylesheet" href="./helpers/media/layout.css?v=2018.2.232" />    
+    <link type="text/css" rel="stylesheet" href="./helpers/media/elements.css?v=2018.2.232" />   
+
+<!-- helper libraries -->
+    <script src="./helpers/jquery-1.9.1.min.js" type="text/javascript"></script>
+
+<!-- daypilot libraries -->
+    <script src="./js/daypilot-all.min.js?v=2018.2.232" type="text/javascript"></script>
+
+<!-- EventsPull -->
+    <!-- <script src="../config/eventsPull.js" type="text/javascript"></script> -->
+
+    <!-- daypilot themes -->
+<link type="text/css" rel="stylesheet" href="./themes/month_white.css?v=2018.2.232" />
+<link type="text/css" rel="stylesheet" href="./themes/month_green.css?v=2018.2.232" />    
+<link type="text/css" rel="stylesheet" href="./themes/month_transparent.css?v=2018.2.232" />    
+    
+<link type="text/css" rel="stylesheet" href="./themes/calendar_transparent.css?v=2018.2.232" />    
+<link type="text/css" rel="stylesheet" href="./themes/calendar_white.css?v=2018.2.232" />    
+<link type="text/css" rel="stylesheet" href="./themes/calendar_green.css?v=2018.2.232" />    
+
+<link type="text/css" rel="stylesheet" href="./themes/navigator_green.css?v=2018.2.232" />    
+<link type="text/css" rel="stylesheet" href="./themes/navigator_white.css?v=2018.2.232" />    
+
+<!-- /head -->
+
+</head>
+
+<body>
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/logout">
+        Logout
+      </a>
+    </div>
+  </div>
+</nav>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h2>Your Upcoming Events:</h2>
+      </div>
+    </div>
+  </div>
+
+  <div id="dp"></div>
+
+  <script type="text/javascript">
+    var dp = new DayPilot.Month("dp");
+
+    // view
+    var today = new Date;
+    var year = today.getFullYear();
+    var month = ('0'+(today.getMonth()+1)).slice(-2);
+    var day = today.getDate();
+    dp.startDate = year+"-"+month+"-"+day
+    console.log(dp.startDate)
+
+
+    //Events Pull
+
+ //   var eventsPull = new EventsPull.selectAll()
+    dp.events.list = [{
+        start: "2020-05-23T00:00:00",
+        end: "2020-05-23T00:00:00",
+        id: "3",
+        text: "Event"}
+    ];
+
+    // event creating
+    dp.onTimeRangeSelected = function (args) {
+        var name = prompt("New event name:", "Event");
+        dp.clearSelection();
+        if (!name) return;
+        var e = new DayPilot.Event({
+            start: args.start,
+            end: args.end,
+            id: DayPilot.guid(),
+            text: name
+        });
+        dp.events.add(e);
+    };
+    
+    dp.onEventClicked = function(args) {
+        alert("clicked: " + args.e.id());
+    };
+
+    dp.onBeforeEventRender = function(args) {
+        var type = args.data.tags && args.data.tags.type;
+        switch (type) {
+            case "important":
+                args.data.fontColor = "#fff";
+                args.data.backColor = "#E06666";
+                args.data.borderColor = "#E06666";
+                break;
+            case "note":
+                args.data.fontColor = "#000";
+                args.data.backColor = "#9FC5E8";
+                args.data.borderColor = "#3D85C6";
+                break;
+            case "warning":
+                args.data.fontColor = "#000";
+                args.data.backColor = "#FFE599";
+                args.data.borderColor = "#F1C232";
+                break;
+            case "complete":
+                args.data.fontColor = "#000";
+                args.data.backColor = "#B6D7A8";
+                args.data.borderColor = "#6AA84F";
+                break;
+        }
+    };
+
+    dp.init();
+
+
+</script>
+        
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/members.js"></script>
+
+</body>
+
+</html>
