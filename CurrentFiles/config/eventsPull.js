@@ -50,7 +50,7 @@ var eventsPull = {
       if (err) {
         throw err;
       }
-      console.log(result)
+      // console.log(result)
       return (result);
     });
   },
