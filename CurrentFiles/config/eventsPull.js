@@ -1,3 +1,6 @@
+// add mysql require
+var mysql = require("mysql");
+
 // Connection
 var connection = mysql.createConnection({
   //Local connection
@@ -9,10 +12,10 @@ var connection = mysql.createConnection({
   });
 
 if (process.env.JAWSDB_URL) {
-var connection = (process.env.JAWSDB_URL)}
-else {
-var connection = connection
-}
+connection = (process.env.JAWSDB_URL)}
+// else {
+// connection = connection;
+// }
 
 
 //Data treatment functions (used in Unit 13 Activity 17)
@@ -24,23 +27,24 @@ function printQuestionMarks(num) {
   return arr.toString();
 }
 
-function objToSql(ob) {
-  var arr = [];
+// function objToSql(ob) {
+//   var arr = [];
 
-  for (var key in ob) {
-    var value = ob[key];
-    if (Object.hasOwnProperty.call(ob, key)) {
-      if (typeof value === "string" && value.indexOf(" ") >= 0) {
-        value = "'" + value + "'";
-      }
-      arr.push(key + "=" + value);
-    }
-  }
-  return arr.toString();
-}
+//   for (var key in ob) {
+//     var value = ob[key];
+//     if (Object.hasOwnProperty.call(ob, key)) {
+//       if (typeof value === "string" && value.indexOf(" ") >= 0) {
+//         value = "'" + value + "'";
+//       }
+//       arr.push(key + "=" + value);
+//     }
+//   }
+//   return arr.toString();
+// }
 
 var eventsPull = {
-  selectAll: function(userID, result) {
+  // selectAll: function(userID, result) {
+    selectAll: function(userID) {
     var queryString = "SELECT * FROM event_data where userID =" + userID + ";";
     connection.query(queryString, function(err, result) {
       if (err) {
@@ -51,7 +55,10 @@ var eventsPull = {
     });
   },
 //Insert function
-  insertOne: function(table, cols, vals, bb) {
+  // insertOne: function(table, cols, vals, bb) {
+
+  insertOne: function(table, cols, vals) {
+
     var queryString = "INSERT INTO " + table;
 
     queryString += " (";
@@ -60,7 +67,10 @@ var eventsPull = {
     queryString += "VALUES (";
     queryString += printQuestionMarks(vals.length);
     queryString += ") ";
+
+    return queryString;
   }
+
 }
 // Export ORM
 module.exports = eventsPull;
