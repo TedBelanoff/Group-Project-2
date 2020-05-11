@@ -57,7 +57,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 * Option 1:🍴 Fork this repo!
 
-* Option 2: 👯 Clone this repo to your local machine using https://github.com/funksoup/Group-Project-2.git
+* Option 2: 👯 Clone this repo to your local machine using https://github.com/funksoup/Quarantini-Gifting.git
 
 ### Step 2
 
@@ -65,6 +65,5 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ### Step 3
 
-* 🔃 Create a new pull request using https://github.com/funksoup/Group-Project-2/compare
-
+* 🔃 Create a new pull request using https://github.com/funksoup/Quarantini-Gifting/compare
 
