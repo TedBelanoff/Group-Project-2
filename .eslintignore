@@ -1,3 +1,6 @@
 node_modules/
 
-public/
+public/helpers/
+public/stylesheets/
+public/themes/
+public/daypilot-all.min.js
