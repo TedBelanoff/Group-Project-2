@@ -1,3 +1,6 @@
+// add mysql require
+var mysql = require("mysql");
+
 // Connection
 var mysql = require("mysql");
 
@@ -36,5 +39,64 @@ var EP = {
       cb(res);
     });
   },
+
+// else {
+// connection = connection;
+// }
+
+
+//Data treatment functions (used in Unit 13 Activity 17)
+function printQuestionMarks(num) {
+  var arr = [];
+  for (var i = 0; i < num; i++) {
+    arr.push("?");
+  }
+  return arr.toString();
+}
+
+// function objToSql(ob) {
+//   var arr = [];
+
+//   for (var key in ob) {
+//     var value = ob[key];
+//     if (Object.hasOwnProperty.call(ob, key)) {
+//       if (typeof value === "string" && value.indexOf(" ") >= 0) {
+//         value = "'" + value + "'";
+//       }
+//       arr.push(key + "=" + value);
+//     }
+//   }
+//   return arr.toString();
+// }
+
+var eventsPull = {
+  // selectAll: function(userID, result) {
+    selectAll: function(userID) {
+    var queryString = "SELECT * FROM event_data where userID =" + userID + ";";
+    connection.query(queryString, function(err, result) {
+      if (err) {
+        throw err;
+      }
+      // console.log(result)
+      return (result);
+    });
+  },
+//Insert function
+  // insertOne: function(table, cols, vals, bb) {
+
+  insertOne: function(table, cols, vals) {
+
+    var queryString = "INSERT INTO " + table;
+
+    queryString += " (";
+    queryString += cols.toString();
+    queryString += ") ";
+    queryString += "VALUES (";
+    queryString += printQuestionMarks(vals.length);
+    queryString += ") ";
+
+    return queryString;
+  }
+
 }
 module.exports = EP
