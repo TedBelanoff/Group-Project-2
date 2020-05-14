@@ -1,4 +1,6 @@
 // Connection
+var mysql = require("mysql");
+
 var connection = mysql.createConnection({
   //Local connection
     host: "d13xat1hwxt21t45.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
@@ -9,58 +11,30 @@ var connection = mysql.createConnection({
   });
 
 if (process.env.JAWSDB_URL) {
-var connection = (process.env.JAWSDB_URL)}
+connection = (process.env.JAWSDB_URL)}
 else {
-var connection = connection
+connection = connection
 }
 
-
-//Data treatment functions (used in Unit 13 Activity 17)
-function printQuestionMarks(num) {
-  var arr = [];
-  for (var i = 0; i < num; i++) {
-    arr.push("?");
-  }
-  return arr.toString();
-}
-
-function objToSql(ob) {
-  var arr = [];
-
-  for (var key in ob) {
-    var value = ob[key];
-    if (Object.hasOwnProperty.call(ob, key)) {
-      if (typeof value === "string" && value.indexOf(" ") >= 0) {
-        value = "'" + value + "'";
-      }
-      arr.push(key + "=" + value);
-    }
-  }
-  return arr.toString();
-}
-
-var eventsPull = {
-  selectAll: function(userID, result) {
-    var queryString = "SELECT * FROM event_data where userID =" + userID + ";";
-    connection.query(queryString, function(err, result) {
-      if (err) {
-        throw err;
-      }
-      console.log(result)
-      return (result);
+var EP = {
+  Anything: function(UserID) {
+    return new Promise((resolve, reject) => {
+      var querystring = "SELECT * FROM eventData where email = '" + UserID +"'"
+        connection.query(querystring, function(err, result) {
+        if (err) {
+          throw err
+        }
+        console.log(result)
+        resolve(result)
+      })
+    })
+  },
+  
+  // The variables cols and vals are arrays.
+  create: function(cols, vals, cb) {
+    orm.create("cats", cols, vals, function(res) {
+      cb(res);
     });
   },
-//Insert function
-  insertOne: function(table, cols, vals, bb) {
-    var queryString = "INSERT INTO " + table;
-
-    queryString += " (";
-    queryString += cols.toString();
-    queryString += ") ";
-    queryString += "VALUES (";
-    queryString += printQuestionMarks(vals.length);
-    queryString += ") ";
-  }
 }
-// Export ORM
-module.exports = eventsPull;
+module.exports = EP

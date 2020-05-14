@@ -1,6 +1,7 @@
 // Requiring our models and passport as we've configured it
 var db = require("../models");
 var passport = require("../config/passport");
+var EP = require("../config/eventsPull.js");
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -33,19 +34,56 @@ module.exports = function(app) {
   });
 
   // Route for getting some data about our user to be used client side
-  app.get("/api/user_data", function(req, res) {
+  app.get("/eventsPull", function(req, res) {
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
     } else {
+      //
+      var mysql = require("mysql");
+
+var connection = mysql.createConnection({
+  //Local connection
+    host: "d13xat1hwxt21t45.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    port: 3306,
+    user: "f1a6rrqcv2pdezj5",
+    password: "pdtupwipjq3cywpx",
+    database: "sfmi5qywezddma5t"
+  });
+
+if (process.env.JAWSDB_URL) {
+connection = (process.env.JAWSDB_URL)}
+else {
+connection = connection
+}
+
+var data
+
+var EP = {
+  selectAll: function(UserID) {
+    return new Promise((resolve, reject) => {
+      var querystring = "SELECT * FROM eventData where email = '" + UserID +"'"
+        connection.query(querystring, function(err, result) {
+        if (err) {
+          throw err
+        }
+        console.log(result)
+        data=result
+        //Pushed.push(result)
+        //resolve(result)
+      })
+    }).then(console.log(data))
+// ^End of promise
+  }}
+      //
+
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
-      res.json({
-        email: req.user.email,
-        id: req.user.id
-      });
-    }
-  });
-};
-
+      EP.selectAll(req.user.email)
+      //  .then(
+      //    function (Response) {console.log(data, "Line 84")}
+      //  )
+      };
+  }
+  )}
  
