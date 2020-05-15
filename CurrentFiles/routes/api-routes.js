@@ -1,7 +1,8 @@
 // Requiring our models and passport as we've configured it
 var db = require("../models");
 var passport = require("../config/passport");
-var EP = require("../config/eventsPull.js");
+var fs = require('fs');
+var path = require('path');
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -34,56 +35,71 @@ module.exports = function(app) {
   });
 
   // Route for getting some data about our user to be used client side
-  app.get("/eventsPull", function(req, res) {
+  app.get("/GetConnection", function(req, res) {
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
     } else {
-      //
       var mysql = require("mysql");
-
-var connection = mysql.createConnection({
+      var connection = mysql.createConnection({
   //Local connection
-    host: "d13xat1hwxt21t45.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-    port: 3306,
-    user: "f1a6rrqcv2pdezj5",
-    password: "pdtupwipjq3cywpx",
-    database: "sfmi5qywezddma5t"
+        host: "d13xat1hwxt21t45.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+        port: 3306,
+        user: "f1a6rrqcv2pdezj5",
+        password: "pdtupwipjq3cywpx",
+        database: "sfmi5qywezddma5t"
   });
 
-if (process.env.JAWSDB_URL) {
-connection = (process.env.JAWSDB_URL)}
-else {
-connection = connection
+  if (process.env.JAWSDB_URL) {
+  connection = (process.env.JAWSDB_URL)}
+  else {
+  connection = connection
+  }
+
+function PullEvents (UserID){
+var querystring = "SELECT start, end, id, text FROM eventData where email = '" + UserID +"'"
+  connection.query(querystring, function(err, result) {
+  if (err) {throw err}
+  fs.writeFile ("./public/input.json", JSON.stringify(result), function(err) {
+    if (err) throw err;
+    console.log('complete');
+    });
+  return result})}
+
+PullEvents(req.user.email)
+
+}})
+
+app.get('/EventPull', function(req, res){
+  res.sendFile(path.resolve("./public/input.json"));
+})
+
+app.post("/api/addEvent", function(req, res) {
+      var mysql = require("mysql");
+      var connection = mysql.createConnection({
+  //Local connection
+        host: "d13xat1hwxt21t45.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+        port: 3306,
+        user: "f1a6rrqcv2pdezj5",
+        password: "pdtupwipjq3cywpx",
+        database: "sfmi5qywezddma5t"
+  });
+
+  if (process.env.JAWSDB_URL) {
+  connection = (process.env.JAWSDB_URL)}
+  else {
+  connection = connection
+  }
+
+function InsertEvent (user, start, end, event){
+var querystring = "insert into eventData values ('"+user+"','"+start+"','"+end+"',"+null+",'"+event+"')"
+  connection.query(querystring, function(err) {
+  if (err) {throw err}
+  })
 }
 
-var data
+console.log("a")
+InsertEvent(req.user.email, req.body.start, req.body.end, req.body.event)
 
-var EP = {
-  selectAll: function(UserID) {
-    return new Promise((resolve, reject) => {
-      var querystring = "SELECT * FROM eventData where email = '" + UserID +"'"
-        connection.query(querystring, function(err, result) {
-        if (err) {
-          throw err
-        }
-        console.log(result)
-        data=result
-        //Pushed.push(result)
-        //resolve(result)
-      })
-    }).then(console.log(data))
-// ^End of promise
-  }}
-      //
-
-      // Otherwise send back the user's email and id
-      // Sending back a password, even a hashed password, isn't a good idea
-      EP.selectAll(req.user.email)
-      //  .then(
-      //    function (Response) {console.log(data, "Line 84")}
-      //  )
-      };
-  }
-  )}
- 
+})
+}

@@ -22,7 +22,6 @@
     <script src="./js/daypilot-all.min.js?v=2018.2.232" type="text/javascript"></script>
 
 <!-- EP libraries -->
-    <!-- <script src="../eventsPull" type="text/javascript"></script> -->
 
     <!-- daypilot themes -->
 <link type="text/css" rel="stylesheet" href="./themes/month_white.css?v=2018.2.232" />
@@ -47,6 +46,9 @@
       <a class="navbar-brand" href="/logout">
         Logout
       </a>
+      <a class="navbar-brand" href="/addEvent">
+        Add an Event
+      </a>
     </div>
   </div>
 </nav>
@@ -61,6 +63,7 @@
   <div id="dp"></div>
 
   <script type="text/javascript">
+
     var dp = new DayPilot.Month("dp");
 
     // view
@@ -71,18 +74,12 @@
     dp.startDate = year+"-"+month+"-"+day
     console.log(dp.startDate)
 
-
-    //Events Pull
-    // var eventsPull = new EventPG
-    // var list = EventPG.Pull()
-    // console.log(list)
-
-    dp.events.list = [{
-        start: "2020-05-23T00:00:00",
-        end: "2020-05-23T00:00:00",
-        id: "3",
-        text: "Event"}
-    ];
+    $.ajax({
+          url: "/EventPull",
+          method: "GET"
+        }).then(function(response) {
+        dp.events.list = response;
+      dp.init()   })
 
     // event creating
     dp.onTimeRangeSelected = function (args) {
@@ -98,6 +95,7 @@
         dp.events.add(e);
     };
     
+    //Lead to Redirect to Recommendations
     dp.onEventClicked = function(args) {
         alert("clicked: " + args.e.id());
     };
@@ -127,13 +125,9 @@
                 break;
         }
     };
-
     dp.init();
-
-
 </script>
         
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="js/members.js"></script>
 
