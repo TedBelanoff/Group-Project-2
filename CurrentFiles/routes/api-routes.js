@@ -91,14 +91,13 @@ app.post("/api/addEvent", function(req, res) {
   connection = connection
   }
 
-function InsertEvent (user, start1, start2, start3, end1, end2, end3, event, eventType, interest, age){
-var querystring = "insert into eventData values ('"+user+"','"+start1+"-"+start2+"-"+start3+"','"+end1+"-"+end2+"-"+end3+"',"+null+",'"+event+"','"+eventType+"','"+interest+"','"+age+"')"
+function InsertEvent (user, start1, start2, start3, end1, end2, end3, event, eventType, interest, priceMin, priceMax){
+var querystring = "insert into eventData values ('"+user+"','"+start1+"-"+start2+"-"+start3+"','"+end1+"-"+end2+"-"+end3+"',"+null+",'"+event+"','"+eventType+"','"+interest+"','"+priceMin+"','"+priceMax+"')"
   connection.query(querystring, function(err) {
   if (err) {throw err}
   })
 }
-console.log(req.user.email, req.body.start1, req.body.start2, req.body.start3, req.body.end1, req.body.end2,  req.body.end3, req.body.event)
 
-InsertEvent(req.user.email, req.body.start1, req.body.start2, req.body.start3, req.body.end1, req.body.end2,  req.body.end3, req.body.event, req.body.eventType, req.body.interest, req.body.age)
+InsertEvent(req.user.email, req.body.start1, req.body.start2, req.body.start3, req.body.end1, req.body.end2,  req.body.end3, req.body.event, req.body.eventType, req.body.interest, req.body.priceMin, req.body.priceMax)
 })
 }
