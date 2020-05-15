@@ -91,15 +91,15 @@ app.post("/api/addEvent", function(req, res) {
   connection = connection
   }
 
-function InsertEvent (user, start, end, event){
-var querystring = "insert into eventData values ('"+user+"','"+start+"','"+end+"',"+null+",'"+event+"')"
+function InsertEvent (user, start1, start2, start3, end1, end2, end3, event){
+var querystring = "insert into eventData values ('"+user+"','"+start1+"-"+start2+"-"+start3+"','"+end1+"-"+end2+"-"+end3+"',"+null+",'"+event+"')"
   connection.query(querystring, function(err) {
   if (err) {throw err}
   })
 }
+console.log(req.user.email, req.body.start1, req.body.start2, req.body.start3, req.body.end1, req.body.end2,  req.body.end3, req.body.event)
 
-console.log("a")
-InsertEvent(req.user.email, req.body.start, req.body.end, req.body.event)
-
+InsertEvent(req.user.email, req.body.start1, req.body.start2, req.body.start3, req.body.end1, req.body.end2,  req.body.end3, req.body.event)
+res.redirect("/members");
 })
 }
