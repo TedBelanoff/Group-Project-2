@@ -32,7 +32,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
-          <h2>Add Event Form</h2>
+          <h2>Add Event</h2>
           <form class="addEvent">
             <div class="form-group">
               <label for="InputStart">Event Start Date</label>
@@ -164,6 +164,24 @@
               <label for="InputEvent">Event Name</label>
               <input type="event" class="form-control" id="event-input">
             </div>
+            <div class="form-group">
+              <label for="InputEventType">Event Type</label>
+              <input type="eventType" class="form-control" id="eventType-input">
+            </div>
+            <div class="form-group">
+              <label for="Interests">Recipient Interests </label>
+              <input type="interests" class="form-control" id="interest-input">
+            </div>
+            <div class="form-group">
+              <label for="InputEnd">Minimum Price</label>
+              <input type="priceMin" class="form-control" id="pricemin-input">
+            </div>
+            <div class="form-group">
+              <label for="InputEnd">Maximum Price</label>
+              <input type="priceMax" class="form-control" id="pricemax-input">
+            </div>
+          </div>
+
             <div style="display: none" id="alert" class="alert alert-danger" role="alert">
               <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
               <span class="sr-only">Error:</span> <span class="msg"></span>
