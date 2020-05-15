@@ -20,14 +20,12 @@ app.use(passport.session());
 
 app.use(express.static("config"));
 
+//Json storage folder
+app.use(express.static("Data"));
 // Requiring our routes
 require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
 
-//
-// var B = require("./config/eventsPull.js");
-// var A = new B.EventGP("a@a.com")
-// A.Pull("a@a.com")
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
