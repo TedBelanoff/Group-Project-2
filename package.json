@@ -21,7 +21,8 @@
     "mysql2": "^1.7.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "sequelize": "^5.21.9"
+    "sequelize": "^5.21.9",
+    "unofficial-amazon-search": "^1.1.0"
   },
   "devDependencies": {
     "eslint": "^7.0.0"

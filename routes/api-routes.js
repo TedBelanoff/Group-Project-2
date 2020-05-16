@@ -96,4 +96,12 @@ function PullEvents (UserID){
   })
 }
 
+
+const {searchAmazon, AmazonSearchResult} = require('unofficial-amazon-search');
+
+searchAmazon('coding, video games, Switch').then(results => {
+    // console.log(results);
+    console.log("amazon results:", results[0].title, results[0].prices, results[0].productUrl,results[0].imageUrl);
+  });
+
 var userInputArrays = []
