@@ -4,6 +4,7 @@ var passport = require("../config/passport");
 var fs = require('fs');
 var path = require('path');
 var mysql = require("mysql");
+const {searchAmazon} = require('unofficial-amazon-search');
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -54,6 +55,14 @@ module.exports = function(app) {
 
       InsertEvent(req.user.email, req.body.start1, req.body.start2, req.body.start3, req.body.end1, req.body.end2,  req.body.end3, req.body.event, req.body.eventType, req.body.interest, req.body.priceMin, req.body.priceMax)
   });
+
+  app.get('/api/gifts', function(req, res) {
+    searchAmazon(req.query.keywords).then(results => {
+      res.json(results.splice(0,5));
+      console.log("amazon results:", results[0].title, results[0].prices, results[0].productUrl,results[0].imageUrl);
+    });
+  
+  })
 };
 
 
@@ -95,13 +104,5 @@ function PullEvents (UserID){
     return result
   })
 }
-
-
-const searchAmazon = require('unofficial-amazon-search');
-
-searchAmazon('coding, video games, Switch').then(results => {
-    // console.log(results);
-    console.log("amazon results:", results[0].title, results[0].prices, results[0].productUrl,results[0].imageUrl);
-  });
 
 var userInputArrays = []
