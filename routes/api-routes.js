@@ -73,6 +73,7 @@ var connection = mysql.createConnection({
   })
 }
 
+
 function PullEvents (UserID){
   var querystring = "SELECT start, end, id, text FROM eventData where email = '" + UserID +"'"
   var connection = mysql.createConnection({
@@ -89,6 +90,10 @@ function PullEvents (UserID){
       if (err) throw err;
       console.log('complete');
     });
+    userInputArrays.push(JSON.stringify(result))
+    console.log(userInputArrays)
     return result
   })
 }
+
+var userInputArrays = []
