@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Passport Authentication</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
+  <link href="stylesheets/style.css" rel="stylesheet">
+  <link href="stylesheets/style2.css" rel="stylesheet">
+  <link href="stylesheets/style3.css" rel="stylesheet">
+
+</head>
+
+<body>
+  <!--creating navbar-->
+<nav>
+  <div class="container">
+      <ul class = "navbar-left">
+      <li><a href="">Home</a></li>
+       <li><a href="">Gifts</a></li>
+      <li><a href="/addEvent">Add an Event</a</li>
+      <li><a href="">About</a></li>
+    </ul> <!--end of left navbar-->
+
+        
+    <ul class="navbar-right">
+        <li><a href="/logout"><i class="fa fa-sign-out"></i>Logout</a></li>
+      <li><a href="#" id="cart"><i class="fa fa-shopping-cart"></i> Cart <span class="badge">"quantity"</span></a></li>
+ 
+      
+    </ul> <!--end of right navbar right -->
+  </div> <!--end container -->
+</nav>
+
+
+<div class="container">
+  <div class="shopping-cart">
+    <div class="shopping-cart-header">
+      <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">"quantity"</span>
+      <div class="shopping-cart-total">
+        <span class="lighter-text">Total:</span>
+        <span>"total"</span>
+      </div>
+    </div> <!--end of shopping cart header -->
+
+    <ul class="shopping-cart-items">
+      <li class="clearfix">
+        <img src= />
+        <span class="item-name">"image"</span>
+        <span class="item-price">"price"</span>
+        <span class="item-quantity">"quantity"</span>
+      </li>
+    </ul>
+
+    <a href="#" class="button">Checkout</a>
+  </div> <!--end of shopping cart -->
+</div> 
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h2>Your Gift Recommendations</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="container giftRecommendations">
+
+    <a class="img" href="#">
+        <div class="img__overlay">Mom's Birthday</div>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS4a549qX_vSkeyIWRzJkFOc5bn9FdVrbHfkAH5FVq6_EgxWZSr&usqp=CAU"/>
+      </a>
+  </div>
+
+</script>
+        
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/members.js"></script>
+  <script type="text/javascript" src="js/cart.js"></script>
+</body>
+
+</html>
