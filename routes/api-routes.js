@@ -3,6 +3,7 @@ var db = require("../models");
 var passport = require("../config/passport");
 var fs = require('fs');
 var path = require('path');
+var mysql = require("mysql");
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -40,65 +41,81 @@ module.exports = function(app) {
       // The user is not logged in, send back an empty object
       res.json({});
     } else {
-      var mysql = require("mysql");
-      var connection = mysql.createConnection({
+      // var mysql = require("mysql");
+      // var connection = mysql.createConnection({
   //Local connection
-        host: "d13xat1hwxt21t45.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-        port: 3306,
-        user: "f1a6rrqcv2pdezj5",
-        password: "pdtupwipjq3cywpx",
-        database: "sfmi5qywezddma5t"
-  });
+        // host: "d13xat1hwxt21t45.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+        // port: 3306,
+        // user: "f1a6rrqcv2pdezj5",
+        // password: "pdtupwipjq3cywpx",
+        // database: "sfmi5qywezddma5t"
+  // });
 
-  if (process.env.JAWSDB_URL) {
-  connection = (process.env.JAWSDB_URL)}
-  else {
-  connection = connection
-  }
+  // if (process.env.JAWSDB_URL) {
+  // connection = (process.env.JAWSDB_URL)}
+  // }
 
-function PullEvents (UserID){
-var querystring = "SELECT start, end, id, text FROM eventData where email = '" + UserID +"'"
-  connection.query(querystring, function(err, result) {
-  if (err) {throw err}
-  fs.writeFile ("./public/input.json", JSON.stringify(result), function(err) {
-    if (err) throw err;
-    console.log('complete');
-    });
-  return result})
-}
-
-PullEvents(req.user.email)
-
+  PullEvents(req.user.email)
 }})
 
-app.get('/EventPull', function(req, res){
-  res.sendFile(path.resolve("./public/input.json"));
-})
 
-app.post("/api/addEvent", function(req, res) {
-      var mysql = require("mysql");
-      var connection = mysql.createConnection({
-  //Local connection
-        host: "d13xat1hwxt21t45.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-        port: 3306,
-        user: "f1a6rrqcv2pdezj5",
-        password: "pdtupwipjq3cywpx",
-        database: "sfmi5qywezddma5t"
+  app.get('/EventPull', function(req, res){
+    res.sendFile(path.resolve("./public/input.json"));
   });
 
-  if (process.env.JAWSDB_URL) {
-  connection = (process.env.JAWSDB_URL)}
-  else {
-  connection = connection
-  }
+  app.post("/api/addEvent", function(req) {
+        // console.log(res);
+        // var mysql = require("mysql");
+    //     var connection = mysql.createConnection({
+    // //Local connection
+    //       host: "d13xat1hwxt21t45.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    //       port: 3306,
+    //       user: "f1a6rrqcv2pdezj5",
+    //       password: "pdtupwipjq3cywpx",
+    //       database: "sfmi5qywezddma5t"
+    //     });
+
+    //   if (process.env.JAWSDB_URL) {
+    //   connection = (process.env.JAWSDB_URL)
+    //   }
+
+      InsertEvent(req.user.email, req.body.start1, req.body.start2, req.body.start3, req.body.end1, req.body.end2,  req.body.end3, req.body.event, req.body.eventType, req.body.interest, req.body.priceMin, req.body.priceMax)
+  });
+};
+
 
 function InsertEvent (user, start1, start2, start3, end1, end2, end3, event, eventType, interest, priceMin, priceMax){
 var querystring = "insert into eventData values ('"+user+"','"+start1+"-"+start2+"-"+start3+"','"+end1+"-"+end2+"-"+end3+"',"+null+",'"+event+"','"+eventType+"','"+interest+"','"+priceMin+"','"+priceMax+"')"
+var connection = mysql.createConnection({
+//Local connection
+      host: "d13xat1hwxt21t45.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+      port: 3306,
+      user: "f1a6rrqcv2pdezj5",
+      password: "pdtupwipjq3cywpx",
+      database: "sfmi5qywezddma5t"
+    });
   connection.query(querystring, function(err) {
-  if (err) {throw err}
+    console.log(connection);
+    if (err) {throw err}
   })
 }
 
-InsertEvent(req.user.email, req.body.start1, req.body.start2, req.body.start3, req.body.end1, req.body.end2,  req.body.end3, req.body.event, req.body.eventType, req.body.interest, req.body.priceMin, req.body.priceMax)
-})
+function PullEvents (UserID){
+  var querystring = "SELECT start, end, id, text FROM eventData where email = '" + UserID +"'"
+  var connection = mysql.createConnection({
+//Local connection
+      host: "d13xat1hwxt21t45.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+      port: 3306,
+      user: "f1a6rrqcv2pdezj5",
+      password: "pdtupwipjq3cywpx",
+      database: "sfmi5qywezddma5t"
+    });
+  connection.query(querystring, function(err, result) {
+    if (err) {throw err}
+    fs.writeFile ("./public/input.json", JSON.stringify(result), function(err) {
+      if (err) throw err;
+      console.log('complete');
+    });
+    return result
+  })
 }
