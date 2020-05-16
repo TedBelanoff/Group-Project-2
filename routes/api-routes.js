@@ -97,7 +97,7 @@ function PullEvents (UserID){
 }
 
 
-const {searchAmazon, AmazonSearchResult} = require('unofficial-amazon-search');
+const searchAmazon = require('unofficial-amazon-search');
 
 searchAmazon('coding, video games, Switch').then(results => {
     // console.log(results);
