@@ -10,57 +10,85 @@
   <link href="stylesheets/style2.css" rel="stylesheet">
   <link href="stylesheets/style3.css" rel="stylesheet">
 
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
   <!--creating navbar-->
 <nav>
   <div class="container">
-      <ul class = "navbar-left">
-      <li><a href="">Home</a></li>
-       <li><a href="">Gifts</a></li>
-      <li><a href="/addEvent">Add an Event</a</li>
-      <li><a href="">About</a></li>
-    </ul> <!--end of left navbar-->
+    <div class="row">
+    <div class="col-6 col-sm-12">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#"><img src="./images/logo_quarantini_gift_100x.png" width="75px"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-        
-    <ul class="navbar-right">
-        <li><a href="/logout"><i class="fa fa-sign-out"></i>Logout</a></li>
-      <li><a href="#" id="cart"><i class="fa fa-shopping-cart"></i> Cart <span class="badge">"quantity"</span></a></li>
- 
-      
-    </ul> <!--end of right navbar right -->
-  </div> <!--end container -->
-</nav>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Events & Gifts</a>
+            </li>
+               <li class="nav-item">
+              <a class="nav-link" href="/addEvent">Add an Event</a>
+            </li>
+           </li>
+               <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+          </ul>
+        </div> 
+      </nav>
+    </div> <!--end of left navbar-->
 
+      <div class="col-6 col-sm-12">  
+        <ul class="navbar-right">
+            <li><a href="/logout"><i class="fa fa-sign-out"></i>Logout</a></li>
+          <li><a href="#" id="cart"><i class="fa fa-shopping-cart"></i> Cart <span class="badge">"quantity"</span></a></li>
+        </ul> 
+      </div> <!--end of right navbar -->
+    </div> <!--end of row 1-->
+</nav> 
 
-<div class="container">
-  <div class="shopping-cart">
-    <div class="shopping-cart-header">
-      <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">"quantity"</span>
-      <div class="shopping-cart-total">
-        <span class="lighter-text">Total:</span>
-        <span>"total"</span>
+  <div class="row">
+  <div class="col-3"></div>
+  <div class="col-6 col-sm-12">
+    <div class="shopping-cart">
+      <div class="shopping-cart-header">
+        <i class="fa fa-shopping-cart cart-icon"></i><span class="badge badge-pill badge-secondary">"quantity"</span>
+        <div class="shopping-cart-total">
+          <span class="lighter-text">Total:</span>
+          <span>"total"</span>
+        </div>
+      </div> <!--end of shopping cart header -->
+
+      <ul class="shopping-cart-items">
+        <li class="clearfix">
+          <img src= />
+          <span class="item-name">"image"</span>
+          <span class="item-price">"price"</span>
+          <span class="item-quantity">"quantity"</span>
+        </li>
+      </ul>
+
+      <div class="col text-center">
+        <button class="btn btn-default">Checkout</button>
       </div>
-    </div> <!--end of shopping cart header -->
+    </div> <!--end of shopping cart -->
+  </div> <!--end of shopping cart row -->
 
-    <ul class="shopping-cart-items">
-      <li class="clearfix">
-        <img src= />
-        <span class="item-name">"image"</span>
-        <span class="item-price">"price"</span>
-        <span class="item-quantity">"quantity"</span>
-      </li>
-    </ul>
+  <div class="col-3"></div>
 
-    <a href="#" class="button">Checkout</a>
-  </div> <!--end of shopping cart -->
-</div> 
-
-  <div class="container">
+  <div class="shopping-container">
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
         <h2>Your Gift Recommendations</h2>
+        
       </div>
     </div>
   </div>
@@ -72,7 +100,7 @@
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS4a549qX_vSkeyIWRzJkFOc5bn9FdVrbHfkAH5FVq6_EgxWZSr&usqp=CAU"/>
       </a>
   </div>
-
+</div>
 </script>
         
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
