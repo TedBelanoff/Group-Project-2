@@ -41,19 +41,6 @@ module.exports = function(app) {
       // The user is not logged in, send back an empty object
       res.json({});
     } else {
-      // var mysql = require("mysql");
-      // var connection = mysql.createConnection({
-  //Local connection
-        // host: "d13xat1hwxt21t45.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-        // port: 3306,
-        // user: "f1a6rrqcv2pdezj5",
-        // password: "pdtupwipjq3cywpx",
-        // database: "sfmi5qywezddma5t"
-  // });
-
-  // if (process.env.JAWSDB_URL) {
-  // connection = (process.env.JAWSDB_URL)}
-  // }
 
   PullEvents(req.user.email)
 }})
@@ -64,20 +51,6 @@ module.exports = function(app) {
   });
 
   app.post("/api/addEvent", function(req) {
-        // console.log(res);
-        // var mysql = require("mysql");
-    //     var connection = mysql.createConnection({
-    // //Local connection
-    //       host: "d13xat1hwxt21t45.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-    //       port: 3306,
-    //       user: "f1a6rrqcv2pdezj5",
-    //       password: "pdtupwipjq3cywpx",
-    //       database: "sfmi5qywezddma5t"
-    //     });
-
-    //   if (process.env.JAWSDB_URL) {
-    //   connection = (process.env.JAWSDB_URL)
-    //   }
 
       InsertEvent(req.user.email, req.body.start1, req.body.start2, req.body.start3, req.body.end1, req.body.end2,  req.body.end3, req.body.event, req.body.eventType, req.body.interest, req.body.priceMin, req.body.priceMax)
   });
@@ -85,7 +58,7 @@ module.exports = function(app) {
 
 
 function InsertEvent (user, start1, start2, start3, end1, end2, end3, event, eventType, interest, priceMin, priceMax){
-var querystring = "insert into eventData values ('"+user+"','"+start1+"-"+start2+"-"+start3+"','"+end1+"-"+end2+"-"+end3+"',"+null+",'"+event+"','"+eventType+"','"+interest+"','"+priceMin+"','"+priceMax+"')"
+var querystring = "insert into eventData values ('"+user+"','"+start1+"-"+start2+"-"+start3+"','"+end1+"-"+end2+"-"+end3+"',"+Math.floor((Math.random() * 10000000000) + 1)+",'"+event+"','"+eventType+"','"+interest+"','"+priceMin+"','"+priceMax+"')"
 var connection = mysql.createConnection({
 //Local connection
       host: "d13xat1hwxt21t45.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
