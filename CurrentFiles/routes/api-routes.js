@@ -64,7 +64,8 @@ var querystring = "SELECT start, end, id, text FROM eventData where email = '" +
     if (err) throw err;
     console.log('complete');
     });
-  return result})}
+  return result})
+}
 
 PullEvents(req.user.email)
 
