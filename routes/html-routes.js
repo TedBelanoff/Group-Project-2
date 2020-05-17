@@ -30,6 +30,11 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/members.html"));
   });
 
+  //reminder's page
+  app.get("/reminder", isAuthenticated, function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/reminder.html"));
+  });
+  
   app.get("/addEvent", isAuthenticated, function(req, res) {
     res.sendFile(path.join(__dirname, "../public/addEvent.html"));
   });
