@@ -129,8 +129,14 @@
     
     //Lead to Redirect to Recommendations
     dp.onEventClicked = function(args) {
-        alert("clicked: " + args.e.id());
-    };
+        // alert("clicked: " + args.e.id());
+
+        $.ajax({
+          url: "/api/gifts",
+          method: "GET",
+          data: {id:args.e.id}
+        })
+   } ;
 
     dp.onBeforeEventRender = function(args) {
         var type = args.data.tags && args.data.tags.type;
