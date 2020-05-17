@@ -3,7 +3,7 @@ var db = require("../models");
 var passport = require("../config/passport");
 var fs = require('fs');
 var path = require('path');
-var mysql = require("mysql");
+// var mysql = require("mysql");
 const {searchAmazon} = require('unofficial-amazon-search');
 
 module.exports = function(app) {
