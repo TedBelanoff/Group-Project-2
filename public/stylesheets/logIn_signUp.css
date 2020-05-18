@@ -6,6 +6,8 @@
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
 body {
   font-family: 'Lato', sans-serif;
+  padding-bottom: 50px;
+
 }
 
 .lighter-text {
@@ -131,6 +133,7 @@ nav ul li a:hover {
   color: white;
   text-align: center;
   padding: 12px;
+  padding-right: 50px;
   text-decoration: none;
   align-content: center;
   border-radius: 3px;
@@ -167,6 +170,10 @@ nav ul li a:hover {
   
   .form-inline button {
     padding: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
     background-color: dodgerblue;
     border: 1px solid #ddd;
     color: white;
@@ -190,9 +197,19 @@ nav ul li a:hover {
 
   .quarantini-logo {
         position: absolute;
-        height: auto;
-        width: auto;
-        max-height: 72px;
-        max-width: 250px;
-        padding: 20px 0 20px 0;
+        height: 134px;
+        width: 300px;
     }
+
+.carousel-control-next-icon:after
+{
+  content: '>';
+  font-size: 55px;
+  color: grey;
+}
+
+.carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 55px;
+  color: grey;
+}
