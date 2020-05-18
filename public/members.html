@@ -130,12 +130,14 @@
     
     //Lead to Redirect to Recommendations
     dp.onEventClicked = function(args) {
-        // alert("clicked: " + args.e.id());
-
+      //alert("clicked: " + args.e.id());
+      var ID = args.e.id()
+      console.log(ID)
         $.ajax({
           url: "/api/gifts",
           method: "GET",
-          data: {id:args.e.id}
+          dataType : 'json',
+          data: {id:ID}
         })
    } ;
 
