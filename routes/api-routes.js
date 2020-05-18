@@ -78,15 +78,19 @@ module.exports = function(app) {
 }),
 
   app.get('/api/gifts', function(req, res) {
-
-    db.Event.findAll({where:
-      {id:req.id}
+    console.log(req)
+    console.log(req.query.id)
+    db.Event.findAll({raw: true, where:
+      {id:req.query.id},
+      attributes: ['interest']
     })
-
-    searchAmazon(req.query.keywords).then(results => {
+    .then(
+      function (result) {
+        var InterestInput = result[0].interest
+    searchAmazon(InterestInput).then(results => {
       res.json(results.splice(0,5));
       console.log("amazon results:", results[0].title, results[0].prices, results[0].productUrl,results[0].imageUrl);
-    });
-  
+    })
+})
   })
-};
+}
