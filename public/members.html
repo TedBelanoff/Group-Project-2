@@ -45,7 +45,7 @@
   <div class="container">
       <ul class = "navbar-left">
       <li><a href="">Home</a></li>
-       <li><a href="">Gifts</a></li>
+      <!-- <li><a href="">Gifts</a></li> -->
       <li><a href="/addEvent">Add an Event</a</li>
       <li><a href="/reminder.html">Reminder</a></li>
     </ul> <!--end of left navbar-->
@@ -53,7 +53,7 @@
         
     <ul class="navbar-right">
         <li><a href="/logout"><i class="fa fa-sign-out"></i>Logout</a></li>
-      <li><a href="#" id="cart"><i class="fa fa-shopping-cart"></i> Cart <span class="badge">"quantity"</span></a></li>
+      <!-- <li><a href="#" id="cart"><i class="fa fa-shopping-cart"></i> Cart <span class="badge">"quantity"</span></a></li> -->
  
       
     </ul> <!--end of right navbar right -->
@@ -61,7 +61,7 @@
 </nav>
 
 
-<div class="container">
+<!-- <div class="container">
   <div class="shopping-cart">
     <div class="shopping-cart-header">
       <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">"quantity"</span>
@@ -69,16 +69,16 @@
         <span class="lighter-text">Total:</span>
         <span>"total"</span>
       </div>
-    </div> <!--end of shopping cart header -->
+    </div> end of shopping cart header -->
 
-    <ul class="shopping-cart-items">
+    <!-- <ul class="shopping-cart-items">
       <li class="clearfix">
         <img src= />
         <span class="item-name">"image"</span>
         <span class="item-price">"price"</span>
         <span class="item-quantity">"quantity"</span>
       </li>
-    </ul>
+    </ul> -->
 
     <a href="#" class="button">Checkout</a>
   </div> <!--end of shopping cart -->
@@ -129,9 +129,12 @@
     
     //Lead to Redirect to Recommendations
     dp.onEventClicked = function(args) {
-      //alert("clicked: " + args.e.id());
+      var randomGiftArray = ["Bath and Body Works - Hand Sanitizer", "Giant pretzel", "Etsy Teapot", "Panda Facemask", "Ariana Grande Concert Tickets", "Fluffy Mittens", "New York Mets Hat", "Pandemic Board Game", "New Yorker Tote Bag", "Cards Against Humanity", "Laptop", "PF Chang's Gift Certificate", "Vacation to Island"]
+      var randomItem = randomGiftArray[Math.floor(Math.random()*randomGiftArray.length)];
+      alert("Your Gift Recommendation: " + randomItem);
+
+
       var ID = args.e.id()
-      console.log(ID)
         $.ajax({
           url: "/api/gifts",
           method: "GET",
