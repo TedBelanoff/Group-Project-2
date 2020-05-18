@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Passport Authentication</title>
+  <title>Gift Recommendations: Quarantini Gifting</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
@@ -15,11 +15,11 @@
 </head>
 
 <body>
-  <!--creating navbar-->
-<nav>
+
   <div class="container">
     <div class="row">
     <div class="col-6 col-sm-12">
+      <!--left navbar-->
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#"><img src="./images/logo_quarantini_gift_100x.png" width="75px"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,67 +34,116 @@
             <li class="nav-item active">
               <a class="nav-link" href="#">Events & Gifts</a>
             </li>
-               <li class="nav-item">
+            <li class="nav-item">
               <a class="nav-link" href="/addEvent">Add an Event</a>
             </li>
-           </li>
-               <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
           </ul>
-        </div> 
-      </nav>
-    </div> <!--end of left navbar-->
+        </div>
+        </nav> <!--end of left navbar-->
+      </div>
 
-      <div class="col-6 col-sm-12">  
+      <!-- <div class="col-6 col-sm-12">  -->
+      <!--right navbar-->
+<!--       <nav> 
         <ul class="navbar-right">
             <li><a href="/logout"><i class="fa fa-sign-out"></i>Logout</a></li>
           <li><a href="#" id="cart"><i class="fa fa-shopping-cart"></i> Cart <span class="badge">"quantity"</span></a></li>
-        </ul> 
-      </div> <!--end of right navbar -->
-    </div> <!--end of row 1-->
-</nav> 
+        </ul>  -->
+ <!--      </nav>  
+      </div> 
+  </div>  -->
 
   <div class="row">
-  <div class="col-3"></div>
-  <div class="col-6 col-sm-12">
-    <div class="shopping-cart">
-      <div class="shopping-cart-header">
-        <i class="fa fa-shopping-cart cart-icon"></i><span class="badge badge-pill badge-secondary total-quantity"></span>
-        <div class="shopping-cart-total">
-          <span class="lighter-text">0</span>
-          <span class = cart-total></span>
+    <div class="col-12">
+      <div class="shopping-cart">
+        <div class="shopping-cart-header">
+          <i class="fa fa-shopping-cart cart-icon"></i><span class="badge badge-pill badge-secondary total-quantity"></span>
+          <div class="shopping-cart-total">
+            <span class="lighter-text">0</span>
+            <span class = cart-total></span>
+          </div>
+        </div> 
+        <!--end of shopping cart header-->
+        <div class="shopping-cart-items">
+        <ul class = "shopping-cart-item">
+        </ul>
+      </div>
+        <div class="col text-center">
+          <button class="btn btn-default">Checkout</button>
         </div>
-      </div> <!--end of shopping cart header -->
-      <div class="shopping-cart-items">
-      <ul class = "shopping-cart-item">
-      </ul>
-    </div>
-      <div class="col text-center">
-        <button class="btn btn-default">Checkout</button>
-      </div>
-    </div> <!--end of shopping cart -->
-  </div> <!--end of shopping cart row -->
+      </div> 
+      <!--end of shopping cart-->
+    </div> 
+  </div> 
+  <!--end of shopping cart row-->
 
-  <div class="col-3"></div>
 
-  <div class="shopping-container">
+  <div class="recommendation-container">
     <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Your Gift Recommendations</h2>
-        
+      <div class="col-12">
+        <h2>Your Gift Recommendations</h2>      
       </div>
     </div>
-  </div>
-
-  <div class="container giftRecommendations">
-
-    <a class="img" href="#">
-        <div class="img__overlay">Mom's Birthday</div>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS4a549qX_vSkeyIWRzJkFOc5bn9FdVrbHfkAH5FVq6_EgxWZSr&usqp=CAU"/>
-      </a>
-  </div>
-</div>
+  
+    <div class="recommendation-items">
+      <div class="row">
+          <div class="col-md-6 col-sm-12">
+              <div class="media">
+                <div class="media-left">
+                  <a href="#">
+                    <img class="media-object amazon-item-image" src="./images/care_package.png" alt="test image" width="100px">
+                  </a>
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading amazon-item-title">Media heading</h4>
+                </div>
+              </div>
+          </div>
+          <div class="col-md-6 col-sm-12">
+              <div class="media">
+                <div class="media-left">
+                  <a href="#">
+                    <img class="media-object" src="./images/care_package.png" alt="test image" width="100px">
+                  </a>
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading">Media heading</h4>
+                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
+                </div>
+              </div>
+          </div>
+      </div>  <!-- row ends here -->
+          <div class="row">
+          <div class="col-md-6 col-sm-12">
+              <div class="media">
+                <div class="media-left">
+                  <a href="#">
+                    <img class="media-object" src="./images/care_package.png" alt="test image" width="100px">
+                  </a>
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading">Media heading</h4>
+                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
+                </div>
+              </div>
+          </div>
+          <div class="col-md-6 col-sm-12">
+              <div class="media">
+                <div class="media-left">
+                  <a href="#">
+                    <img class="media-object" src="./images/care_package.png" alt="test image" width="100px">
+                  </a>
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading">Media heading</h4>
+                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
+                </div>
+              </div>
+          </div>
+      </div>  <!-- row ends here -->
+    </div>  <!-- recommendation-items div ends here -->
+  </div>  <!-- recommendation-container div ends here -->
+</div> <!-- container ends here -->
 </script>
         
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

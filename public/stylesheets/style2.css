@@ -42,9 +42,19 @@ nav ul li a:hover {
   width: 100%;
 }
 
-.shopping-container {
+.recommendation-container {
   margin: 15px 0px 15px 10px;
+  width: 80%;
+}
+
+.recommendation-items {
+  margin: 10px 10px 10px 10px;
   width: 100%;
+}
+
+/*media class for recommendation items*/
+.media {
+  margin: 15px 0px 15px 0px;;
 }
 
 .badge {
