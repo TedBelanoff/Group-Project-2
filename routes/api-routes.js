@@ -88,8 +88,11 @@ module.exports = function(app) {
       function (result) {
         var InterestInput = result[0].interest
     searchAmazon(InterestInput).then(results => {
-      res.json(results.splice(0,5));
-      console.log("amazon results:", results[0].title, results[0].prices, results[0].productUrl,results[0].imageUrl);
+      var amazonResults = results.splice(0,6);
+      res.json(amazonResults);
+      console.log(amazonResults);
+      console.log("first amazon item:", amazonResults[0]._title)
+      // console.log("amazon results:", results[0].title, results[0].prices, results[0].productUrl,results[0].imageUrl);
     })
 })
   })
